@@ -34,6 +34,7 @@ include('include/sidebar.php');
                 <th>First name</th>
                 <th>Last name</th>
                 <th>Admin Type</th>
+                <th>Action</th>
                
                
             </tr>
@@ -56,6 +57,13 @@ include('include/sidebar.php');
                 <td><?php echo $row['first_name']; ?></td>
                 <td><?php echo $row['last_name']; ?></td>
                 <td><?php echo $row['admin_type']; ?></td>
+                <td>
+                  <div class="row"></div>
+                  <div class="btn-group">
+                    <a href="customer_edit.php?edit=<?php echo  $row['id'];?>" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="customer_delete.php?del=<?php echo  $row['id'];?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+
                 
                
                
@@ -71,6 +79,7 @@ include('include/sidebar.php');
                 <th>First name</th>
                 <th>Last name</th>
                 <th>Admin Type</th>
+                <th>Action</th>
                
                
             </tr>
