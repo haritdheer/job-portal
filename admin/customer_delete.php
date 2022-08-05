@@ -10,6 +10,6 @@ if($query){
     header('location:customers.php');
 }
 else{
-    "<script>alert('error!!')</script>";
+    echo "<script>alert('error!!')</script>";
 }
 ?>
