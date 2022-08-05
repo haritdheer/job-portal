@@ -12,9 +12,9 @@ $query=mysqli_query($conn,"insert into company(company,des)values('$company','$d
 
 // var_dump($query);
 if($query){
-    echo "Inserted";
+   echo "<script>alert('Added Successfully!!')</script>";
 }
 else{
-    echo "Error";
+    echo "<script>alert('error occured')</script>";
 }
 ?>

@@ -51,10 +51,12 @@ include('include/sidebar.php');
                 <td><?php echo $row['des']; ?></td>
                
                 <td>
-                  <div class="row"></div>
+                  <div class="row">
                   <div class="btn-group">
-                    <a href="customer_edit.php?edit=<?php echo  $row['company_id'];?>" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="customer_delete.php?del=<?php echo  $row['company_id'];?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a href="company_edit.php?edit=<?php echo  $row['company_id'];?>" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="company_delete.php?del=<?php echo  $row['company_id'];?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+        </div>
+        </div>
                 </td>
 
                 
