@@ -14,6 +14,7 @@ while($row=mysqli_fetch_array($query)){
     $state=$row['state'];
     $city=$row['city'];
     
+    
 }
 ?>
    
@@ -59,6 +60,12 @@ while($row=mysqli_fetch_array($query)){
 
           </div>
 
+          <!-- <div class="form-group">
+            <label for="Customer Username">Enter Keyword</label>
+          <input type="text" class="form-control" name="keyword" id="keyword" placeholder="specific job title or skill ">
+
+          </div> -->
+
           <div class="form-group">
         <label for="Country">Country</label>
         <input type="text" value="<?php echo $country;?>" name="country" class=" form-control" id="country"  placeholder="Choose from India,UK,Canada only">
@@ -79,6 +86,20 @@ while($row=mysqli_fetch_array($query)){
          <!-- <option value="">Select City</option>
         </select> -->
           </div>
+
+          <!-- <div class="form-group">
+            <label for="">Select Category</label>
+            <select name="category" class="catagories form-control" id="category">
+          <!-- <?php
+          while($row=mysqli_fetch_array($query)){
+            ?>
+          <option value="<?php echo $row['id'] ?>"><?php echo $row['category']; ?></option>
+          <?php
+          }
+          ?> -->
+
+            <!-- </select>
+          </div> --> 
 
          
 
@@ -135,6 +156,9 @@ while($row=mysqli_fetch_array($query)){
       var country=$("#country").val();
       var state=$("#state").val();
       var city=$("#city").val();
+      var category=$("#category").val();
+      var keyword=$("#keyword").val();
+      
       
       var description=$("#description").val();
       
@@ -146,6 +170,12 @@ while($row=mysqli_fetch_array($query)){
         alert("Enter Description!!");
         return false;
       }
+
+      // if(keyword==''){
+      //   alert("Select Category!!");
+      //   return false;
+      // }
+
       if(country==''){
         alert("Enter Country Name!!");
         return false;
@@ -159,6 +189,11 @@ while($row=mysqli_fetch_array($query)){
         alert("Enter City Name!!");
         return false;
       }
+      // if(category==''){
+      //   alert("Select Category!!");
+      //   return false;
+      // }
+     
 
 
       var data=$("#job_form").serialize();
@@ -181,6 +216,9 @@ if(isset($_POST['submit'])){
     $country=$_POST['country'];
     $state=$_POST['state'];
     $city=$_POST['city'];
+    // $keyword=$_POST['keyword'];
+    // $category=$_POST['category'];
+   
 
     $query1=mysqli_query($conn,"update all_jobs set job_title='$job_title',des='$des',country='$country',state='$state',city='$city' where job_id='$id' ");
 

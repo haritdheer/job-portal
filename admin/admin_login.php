@@ -33,7 +33,7 @@ session_start();
 
   <body class="text-center">
     <form class="form-signin" id="admin_login" method="post" action="admin_login.php" name="admin-login">
-      <img class="mb-4" src="img/ball.webp" alt="" width="102" height="102">
+      <img class="mb-4" src="img/eagle.jpg" alt="" width="102" height="102">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
       <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>

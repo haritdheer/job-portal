@@ -2,9 +2,6 @@
 include('include/header.php');
 include('include/sidebar.php');
 ?>
-<?php
-$query=mysqli_query($conn,"select * from job_category");
-?>
    
 
 
@@ -15,14 +12,14 @@ $query=mysqli_query($conn,"select * from job_category");
         <nav aria-label="breadcrumb">
          <ol class="breadcrumb">
          <li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-         <li class="breadcrumb-item"><a href="job_create.php">Job List</a></li>
-         <li class="breadcrumb-item"><a href="#"> Add Job</a></li>
+         <li class="breadcrumb-item"><a href="category.php">Category</a></li>
+         <li class="breadcrumb-item"><a href="#"> Add Category</a></li>
 
     
          </ol>
          </nav>
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-          <h1 class="h2">Add Job</h1>
+          <h1 class="h2">Add Category</h1>
 
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
@@ -34,10 +31,10 @@ $query=mysqli_query($conn,"select * from job_category");
 
           <div style="width: 50%; margin-left:25%; background-color: #F2F4F4;">
           <div id="msg"></div>
-          <form action="" method ="POST" style="margin:3% ; padding:3%;" name="job_form" id="job_form">
+          <form action="" method ="POST" style="margin:3% ; padding:3%;" name="company_form" id="company_form">
           <div class="form-group">
-            <label for="Customer Email">Job Title</label>
-            <input type="text" name ="job_title" id="job_title" class="form-control" placeholder="Enter Job Title">
+            <label for="Customer Email">Category Name</label>
+            <input type="text" name ="category" id="category" class="form-control" placeholder="Enter Category Name">
 
           </div>
 
@@ -45,47 +42,6 @@ $query=mysqli_query($conn,"select * from job_category");
             <label for="Customer Username">Description</label>
            <textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
 
-          </div>
-
-          <div class="form-group">
-            <label for="Customer Username">Enter Keyword</label>
-          <input type="text" class="form-control" name="keyword" id="keyword" placeholder="specific job title or skill ">
-
-          </div>
-
-          <div class="form-group">
-        <label for="Country">Country</label>
-        <input type="text" name="country" class=" form-control" id="country"  placeholder="Choose from India,UK,Canada only">
-        <!-- <option value="">Select Country</option> -->
-        <!-- </select> -->
-          </div>
-
-          <div class="form-group">
-        <label for="State">State</label>
-        <input type="text" name="state" class=" form-control" id="state" placeholder="ex-Maharashtra,Birmingham..">
-        <!-- <option value="">Select State</option>
-        </select> -->
-          </div>
-
-          <div class="form-group">
-        <label for="City">City</label>
-        <input type="text" name="city" class=" form-control" id="city" placeholder="Only in Metropolitan cities">
-         <!-- <option value="">Select City</option>
-        </select> -->
-          </div>
-
-          <div class="form-group">
-            <label for="">Select Category</label>
-            <select name="category" class="catagories form-control" id="category">
-          <?php
-          while($row=mysqli_fetch_array($query)){
-            ?>
-          <option value="<?php echo $row['id'] ?>"><?php echo $row['category']; ?></option>
-          <?php
-          }
-          ?>
-
-            </select>
           </div>
 
          
@@ -139,41 +95,22 @@ $query=mysqli_query($conn,"select * from job_category");
 
   $(document).ready(function(){
     $("#submit").click(function(){
-      var job_title=$("#job_title").val();
-      var country=$("#country").val();
-      var state=$("#state").val();
-      var city=$("#city").val();
-      
+      var category=$("#category").val();
       var description=$("#description").val();
-      
-      if(job_title==''){
-        alert("Enter Job Title!!");
-        return false;
-      }
       if(description==''){
         alert("Enter Description!!");
         return false;
       }
-      if(country==''){
-        alert("Enter Country Name!!");
-        return false;
-      }
-      if(state==''){
-        alert("Enter State Name!!");
+      if(category==''){
+        alert("Enter Category Name!!");
         return false;
       }
 
-      if(city==''){
-        alert("Enter City Name!!");
-        return false;
-      }
-
-
-      var data=$("#job_form").serialize();
+      var data=$("#company_form").serialize();
 
       $.ajax({
         type:"POST",
-        url:"add_new_job.php",
+        url:"category_add.php",
         data:data,
         success:function(data){
          alert(data);

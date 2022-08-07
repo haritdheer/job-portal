@@ -1,6 +1,4 @@
 <?php
-include('connection/db.php');
-
 include('include/header.php');
 include('include/sidebar.php');
 ?>
@@ -9,18 +7,18 @@ include('include/sidebar.php');
         <nav aria-label="breadcrumb">
          <ol class="breadcrumb">
          <li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-         <li class="breadcrumb-item"><a href="#">Jobs</a></li>
+         <li class="breadcrumb-item"><a href="#">Category</a></li>
     
          </ol>
          </nav>
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-          <h1 class="h2">All Jobs</h1>
+          <h1 class="h2">Category</h1>
 
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-group mr-2">
                
               </div>
-             <a class="btn btn-primary" href="add_create_job.php">Create Job</a>
+             <a class="btn btn-primary" href="add_category.php">Add +</a>
             </div>
           </div>
           <table id="example" class="display" style="width:100%">
@@ -28,14 +26,8 @@ include('include/sidebar.php');
             <tr>
                 <th>#SL</th>
                 
-                <th>Admin Name</th>
-                <th>Job Title</th>
+                <th>Category Name</th>
                 <th>Description</th>
-                <th>Country</th>
-                <th>State</th>
-                <th>City</th>
-                <th>Keyword</th>
-                <th>Category</th>
                 <th>Action</th>
                 
                
@@ -47,28 +39,22 @@ include('include/sidebar.php');
         <?php
         include ('connection/db.php');
 
-        $query=mysqli_query($conn,"select * from all_jobs where customer_email='{$_SESSION['email']}'");
+        $query=mysqli_query($conn,"select * from job_category");
         while($row=mysqli_fetch_array($query)){
 
         
             ?>
            
             <tr>
-            <td><?php echo $row['job_id']; ?></td>
-                <td><?php echo $row['customer_email']; ?></td>
-                <td><?php echo $row['job_title']; ?></td>
-                <td><?php echo $row['des']; ?></td>
-                <td><?php echo $row['country']; ?></td>
-                <td><?php echo $row['state']; ?></td>
-                <td><?php echo $row['city']; ?></td>
+                <td><?php echo $row['id']; ?></td>
                 <td><?php echo $row['category']; ?></td>
-                <td><?php echo $row['keyword']; ?></td>
+                <td><?php echo $row['des']; ?></td>
                
                 <td>
                   <div class="row">
                   <div class="btn-group">
-                    <a href="job_edit.php?edit=<?php echo  $row['job_id'];?>" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="job_delete.php?del=<?php echo  $row['job_id'];?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a href="edit_category.php?edit=<?php echo  $row['id'];?>" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="delete_category.php?del=<?php echo  $row['id'];?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
         </div>
         </div>
                 </td>
@@ -83,14 +69,8 @@ include('include/sidebar.php');
             <tr>
                 <th>#SL</th>
                
-                <th>Admin Name</th>
-                <th>Job Title</th>
+                <th>Category Name</th>
                 <th>Description</th>
-                <th>Country</th>
-                <th>State</th>
-                <th>City</th>
-                <th>Keyword</th>
-                <th>Category</th>
                 <th>Action</th>
                
                
