@@ -2,7 +2,11 @@
 include('include/header.php');
 include('include/sidebar.php');
 ?>
-   
+ 
+ <?php
+include('connection/db.php');
+$query=mysqli_query($conn,"select * from admin_login where admin_type='2' ")
+ ?>
 
 
 
@@ -42,6 +46,17 @@ include('include/sidebar.php');
             <label for="Customer Username">Description</label>
            <textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
 
+          </div>
+
+          <div class="form-group">
+            <label for="Customer Username">Select Company Admin</label>
+          <select name="admin" class="form-control" id="admin">
+          <?php
+          while($row=mysqli_fetch_array($query)){ ?>
+          <option value="<?php echo $row['admin_email']; ?>"><?php echo $row['admin_email']; ?> </option>
+           <?php   }
+          ?>
+          </select>
           </div>
 
          

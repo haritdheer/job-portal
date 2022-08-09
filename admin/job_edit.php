@@ -13,6 +13,8 @@ while($row=mysqli_fetch_array($query)){
     $country=$row['country'];
     $state=$row['state'];
     $city=$row['city'];
+    $keyword=$row['keyword'];
+    $category=$row['category'];
     
     
 }
@@ -60,11 +62,11 @@ while($row=mysqli_fetch_array($query)){
 
           </div>
 
-          <!-- <div class="form-group">
+          <div class="form-group">
             <label for="Customer Username">Enter Keyword</label>
-          <input type="text" class="form-control" name="keyword" id="keyword" placeholder="specific job title or skill ">
+          <input type="text" value="<?php echo $keyword;?>" class="form-control" name="keyword" id="keyword" placeholder="specific job title or skill ">
 
-          </div> -->
+          </div>
 
           <div class="form-group">
         <label for="Country">Country</label>
@@ -87,19 +89,20 @@ while($row=mysqli_fetch_array($query)){
         </select> -->
           </div>
 
-          <!-- <div class="form-group">
+          <div class="form-group">
             <label for="">Select Category</label>
             <select name="category" class="catagories form-control" id="category">
-          <!-- <?php
-          while($row=mysqli_fetch_array($query)){
+           <?php
+           $q=mysqli_query($conn,"select * from job_category");
+          while($row=mysqli_fetch_array($q)){
             ?>
           <option value="<?php echo $row['id'] ?>"><?php echo $row['category']; ?></option>
           <?php
           }
-          ?> -->
+          ?> 
 
-            <!-- </select>
-          </div> --> 
+             </select>
+          </div> 
 
          
 
@@ -171,10 +174,10 @@ while($row=mysqli_fetch_array($query)){
         return false;
       }
 
-      // if(keyword==''){
-      //   alert("Select Category!!");
-      //   return false;
-      // }
+      if(keyword==''){
+        alert(" keyword!!");
+        return false;
+      }
 
       if(country==''){
         alert("Enter Country Name!!");
@@ -189,10 +192,10 @@ while($row=mysqli_fetch_array($query)){
         alert("Enter City Name!!");
         return false;
       }
-      // if(category==''){
-      //   alert("Select Category!!");
-      //   return false;
-      // }
+      if(category==''){
+        alert("Select Category!!");
+        return false;
+      }
      
 
 
@@ -216,11 +219,11 @@ if(isset($_POST['submit'])){
     $country=$_POST['country'];
     $state=$_POST['state'];
     $city=$_POST['city'];
-    // $keyword=$_POST['keyword'];
-    // $category=$_POST['category'];
+    $keyword=$_POST['keyword'];
+    $category=$_POST['category'];
    
 
-    $query1=mysqli_query($conn,"update all_jobs set job_title='$job_title',des='$des',country='$country',state='$state',city='$city' where job_id='$id' ");
+    $query1=mysqli_query($conn,"update all_jobs set job_title='$job_title',des='$des',country='$country',state='$state',city='$city',keyword='$keyword',category='$category' where job_id='$id' ");
 
     if($query1){
         echo "<script>alert('Updated Successfully!!!')</script>";

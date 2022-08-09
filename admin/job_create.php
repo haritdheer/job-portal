@@ -34,8 +34,9 @@ include('include/sidebar.php');
                 <th>Country</th>
                 <th>State</th>
                 <th>City</th>
-                <th>Keyword</th>
                 <th>Category</th>
+                <th>Keyword</th>
+               
                 <th>Action</th>
                 
                
@@ -89,8 +90,9 @@ include('include/sidebar.php');
                 <th>Country</th>
                 <th>State</th>
                 <th>City</th>
-                <th>Keyword</th>
                 <th>Category</th>
+                <th>Keyword</th>
+               
                 <th>Action</th>
                
                

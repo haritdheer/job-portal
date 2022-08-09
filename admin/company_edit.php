@@ -9,6 +9,7 @@ $query=mysqli_query($conn,"select * from company where company_id='$id' ");
 while($row=mysqli_fetch_array($query)){
     $company_name=$row['company'];
     $des=$row['des'];
+    $admin=$row['admin'];
     
 }
 ?>
@@ -49,6 +50,20 @@ while($row=mysqli_fetch_array($query)){
 
            </textarea>
           </div>
+
+          <div class="form-group">
+            <label for="Customer Username">Select Company Admin</label>
+          <select name="admin" class="form-control" id="admin">
+          <?php
+          include('connection/db.php');
+          $q=mysqli_query($conn,"select * from admin_login where admin_type='2' ");
+          while($row=mysqli_fetch_array($q)){ ?>
+          <option value="<?php echo $row['admin_email']; ?>"><?php echo $row['admin_email']; ?> </option>
+           <?php   }
+          ?>
+          </select>
+          </div>
+
 
          
 
@@ -112,9 +127,10 @@ if(isset($_POST['submit'])){
     $id=$_POST['company_id'];
     $company=$_POST['company'];
     $des=$_POST['des'];
+    $admin=$_POST['admin'];
    
 
-    $query1=mysqli_query($conn,"update company set company='$company',des='$des' where company_id='$id' ");
+    $query1=mysqli_query($conn,"update company set company='$company',des='$des',admin='$admin' where company_id='$id' ");
 
     if($query1){
         echo "<script>alert('Updated Successfully!!!')</script>";
