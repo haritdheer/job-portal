@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php
 include('connection/db.php');
 $query=mysqli_query($conn,"select * from job_category");
@@ -5,7 +6,7 @@ $query=mysqli_query($conn,"select * from job_category");
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>JobPortal - Free Bootstrap 4 Template by Colorlib</title>
+    <title>JobPortal by Harit</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -34,7 +35,7 @@ $query=mysqli_query($conn,"select * from job_category");
     
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">JobPortal</a>
+	      <a class="navbar-brand" href="index.php">JobPortal</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -45,8 +46,20 @@ $query=mysqli_query($conn,"select * from job_category");
 	          <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
-	          <li class="nav-item cta mr-md-2"><a href="new-post.php" class="nav-link">Post a Job</a></li>
-	          <li class="nav-item cta cta-colored"><a href="job-post.php" class="nav-link">Want a Job</a></li>
+
+            <?php 
+            if(isset($_SESSION['email'])==true){ ?>
+              <li class="nav-item cta mr-md-2"><a href="job-post.php" class="nav-link"><?php echo $_SESSION['email']; ?></a></li>
+              <li class="nav-item cta cta-colored"><a href="logout.php" class="nav-link">LOGOUT</a></li>
+              <?php
+            }else{?>
+             <li class="nav-item cta mr-md-2"><a href="job-post.php" class="nav-link">LOGIN</a></li>
+             
+              <?php
+            }
+            ?>
+
+	          
 
 	        </ul>
 	      </div>
@@ -183,7 +196,17 @@ $query=mysqli_query($conn,"select * from job_category");
         </div>
       </div>
     </div>
+      <?php 
+      include('connection/db.php');
 
+     if(isset($_POST['search'])){
+        $keyword=$_POST['key'];
+        $category=$_POST['category'];
+        $query=mysqli_query($conn,"select * from all_jobs LEFT JOIN company ON all_jobs.customer_email=company.admin WHERE keyword LIKE '%$keyword%' OR category='$category' ");
+     }                                 
+
+      ?>
+      <div id="id_all_jobs">
     <section class="ftco-section bg-light">
 			<div class="container">
 				<div class="row justify-content-center mb-5 pb-3">
@@ -193,254 +216,45 @@ $query=mysqli_query($conn,"select * from job_category");
           </div>
         </div>
 				<div class="row">
+        <?php
+
+        while($row=mysqli_fetch_array($query)){ ?>
+
+        
+
+
 					<div class="col-md-12 ftco-animate">
 
             <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
 
               <div class="mb-4 mb-md-0 mr-5">
                 <div class="job-post-item-header d-flex align-items-center">
-                  <h2 class="mr-3 text-black h3">Frontend Development</h2>
+                  <h2 class="mr-3 text-black h3"><?php echo $row['job_title']; ?></h2>
                   <div class="badge-wrap">
-                   <span class="bg-primary text-white badge py-2 px-3">Partime</span>
+                   <span class="bg-primary text-white badge py-2 px-3"><?php echo $row['city'];?></span>
                   </div>
                 </div>
                 <div class="job-post-item-body d-block d-md-flex">
-                  <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
-                  <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
+                  <div class="mr-3"><span class="icon-layers"></span> <a href="#"><?php echo $row['company'];?> </a></div>
+                  <div><span class="icon-my_location"></span> <span><?php echo $row['country']?>,<?php echo $row['state']?>,<?php echo $row['city'];?></span></div>
                 </div>
               </div>
-
+              
+        
+              
               <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
+                <a href="blog-single.php?id=<?php echo $row['job_id']; ?>" class="btn btn-primary py-2 mr-1">Apply Job</a>
                 <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
                 	<span class="icon-heart"></span>
                 </a>
               </div>
             </div>
+        </td>
           </div><!-- end -->
+        </tr>
+          <?php } ?>
 
-          <div class="col-md-12 ftco-animate">
-						<div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
-
-						  <div class="mb-4 mb-md-0 mr-5">
-						   <div class="job-post-item-header d-flex align-items-center">
-						     <h2 class="mr-3 text-black h4">Full Stack Developer</h2>
-						     <div class="badge-wrap">
-						      <span class="bg-warning text-white badge py-2 px-3">Full Time</span>
-						     </div>
-						   </div>
-						   <div class="job-post-item-body d-block d-md-flex">
-						     <div class="mr-3"><span class="icon-layers"></span> <a href="#">Google, Inc.</a></div>
-						     <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-						   </div>
-						  </div>
-
-						  <div class="ml-auto d-flex">
-						  	<a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
-                <a href="#" class="btn btn-danger rounded-circle btn-favorite d-flex align-items-center">
-                	<span class="icon-heart"></span>
-                </a>
-              </div>
-
-						</div>
-          </div> <!-- end -->
-          <div class="col-md-12 ftco-animate">
-           <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
-
-              <div class="mb-4 mb-md-0 mr-5">
-               <div class="job-post-item-header d-flex align-items-center">
-                 <h2 class="mr-3 text-black h4">Open Source Interactive Developer</h2>
-                 <div class="badge-wrap">
-                  <span class="bg-info text-white badge py-2 px-3">Freelance</span>
-                 </div>
-               </div>
-               <div class="job-post-item-body d-block d-md-flex">
-                 <div class="mr-3"><span class="icon-layers"></span> <a href="#">New York Times</a></div>
-                 <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-               </div>
-              </div>
-              
-              <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
-                <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
-                	<span class="icon-heart"></span>
-                </a>
-              </div>
-           </div>
-         </div> <!-- end -->
-         <div class="col-md-12 ftco-animate">
-
-           <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
-
-              <div class="mb-4 mb-md-0 mr-5">
-               <div class="job-post-item-header d-flex align-items-center">
-                 <h2 class="mr-3 text-black h4">Frontend Development</h2>
-                 <div class="badge-wrap">
-                  <span class="bg-secondary text-white badge py-2 px-3">Internship</span>
-                 </div>
-               </div>
-               <div class="job-post-item-body d-block d-md-flex">
-                 <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
-                 <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-               </div>
-              </div>
-
-              <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
-                <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
-                	<span class="icon-heart"></span>
-                </a>
-              </div>
-           </div>
-         </div> <!-- end -->
-         <div class="col-md-12 ftco-animate">
-           <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
-
-              <div class="mb-4 mb-md-0 mr-5">
-               <div class="job-post-item-header d-flex align-items-center">
-                 <h2 class="mr-3 text-black h4">Open Source Interactive Developer</h2>
-                 <div class="badge-wrap">
-                  <span class="bg-danger text-white badge py-2 px-3">Temporary</span>
-                 </div>
-               </div>
-               <div class="job-post-item-body d-block d-md-flex">
-                 <div class="mr-3"><span class="icon-layers"></span> <a href="#">New York Times</a></div>
-                 <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-               </div>
-              </div>
-              
-              <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
-                <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
-                	<span class="icon-heart"></span>
-                </a>
-              </div>
-           </div>
-         </div> <!-- end -->
-         <div class="col-md-12 ftco-animate">
-
-            <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
-
-              <div class="mb-4 mb-md-0 mr-5">
-                <div class="job-post-item-header d-flex align-items-center">
-                  <h2 class="mr-3 text-black h3">Frontend Development</h2>
-                  <div class="badge-wrap">
-                   <span class="bg-primary text-white badge py-2 px-3">Partime</span>
-                  </div>
-                </div>
-                <div class="job-post-item-body d-block d-md-flex">
-                  <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
-                  <div><span class="icon-map-marker"></span> <span>Western City, UK</span></div>
-                </div>
-              </div>
-
-              <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
-                <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
-                	<span class="icon-heart"></span>
-                </a>
-              </div>
-            </div>
-          </div><!-- end -->
-
-          <div class="col-md-12 ftco-animate">
-						<div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
-
-						  <div class="mb-4 mb-md-0 mr-5">
-						   <div class="job-post-item-header d-flex align-items-center">
-						     <h2 class="mr-3 text-black h4">Full Stack Developer</h2>
-						     <div class="badge-wrap">
-						      <span class="bg-warning text-white badge py-2 px-3">Full Time</span>
-						     </div>
-						   </div>
-						   <div class="job-post-item-body d-block d-md-flex">
-						     <div class="mr-3"><span class="icon-layers"></span> <a href="#">Google, Inc.</a></div>
-						     <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-						   </div>
-						  </div>
-
-						  <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
-                <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
-                	<span class="icon-heart"></span>
-                </a>
-              </div>
-
-						</div>
-          </div> <!-- end -->
-          <div class="col-md-12 ftco-animate">
-           <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
-
-              <div class="mb-4 mb-md-0 mr-5">
-               <div class="job-post-item-header d-flex align-items-center">
-                 <h2 class="mr-3 text-black h4">Open Source Interactive Developer</h2>
-                 <div class="badge-wrap">
-                  <span class="bg-info text-white badge py-2 px-3">Freelance</span>
-                 </div>
-               </div>
-               <div class="job-post-item-body d-block d-md-flex">
-                 <div class="mr-3"><span class="icon-layers"></span> <a href="#">New York Times</a></div>
-                 <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-               </div>
-              </div>
-              
-              <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
-                <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
-                	<span class="icon-heart"></span>
-                </a>
-              </div>
-           </div>
-         </div> <!-- end -->
-         <div class="col-md-12 ftco-animate">
-
-           <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
-
-              <div class="mb-4 mb-md-0 mr-5">
-               <div class="job-post-item-header d-flex align-items-center">
-                 <h2 class="mr-3 text-black h4">Frontend Development</h2>
-                 <div class="badge-wrap">
-                  <span class="bg-secondary text-white badge py-2 px-3">Internship</span>
-                 </div>
-               </div>
-               <div class="job-post-item-body d-block d-md-flex">
-                 <div class="mr-3"><span class="icon-layers"></span> <a href="#">Facebook, Inc.</a></div>
-                 <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-               </div>
-              </div>
-
-              <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
-                <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
-                	<span class="icon-heart"></span>
-                </a>
-              </div>
-           </div>
-         </div> <!-- end -->
-         <div class="col-md-12 ftco-animate">
-           <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
-
-              <div class="mb-4 mb-md-0 mr-5">
-               <div class="job-post-item-header d-flex align-items-center">
-                 <h2 class="mr-3 text-black h4">Open Source Interactive Developer</h2>
-                 <div class="badge-wrap">
-                  <span class="bg-danger text-white badge py-2 px-3">Temporary</span>
-                 </div>
-               </div>
-               <div class="job-post-item-body d-block d-md-flex">
-                 <div class="mr-3"><span class="icon-layers"></span> <a href="#">New York Times</a></div>
-                 <div><span class="icon-my_location"></span> <span>Western City, UK</span></div>
-               </div>
-              </div>
-              
-              <div class="ml-auto d-flex">
-                <a href="job-single.html" class="btn btn-primary py-2 mr-1">Apply Job</a>
-                <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
-                	<span class="icon-heart"></span>
-                </a>
-              </div>
-           </div>
-         </div> <!-- end -->
+        </div>
 				</div>
 				<div class="row mt-5">
           <div class="col text-center">
@@ -692,7 +506,7 @@ $query=mysqli_query($conn,"select * from job_category");
         <div class="row d-flex">
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
+              <a href="blog-single.php" class="block-20" style="background-image: url('images/image_1.jpg');">
               </a>
               <div class="text mt-3">
               	<div class="meta mb-2">
@@ -707,7 +521,7 @@ $query=mysqli_query($conn,"select * from job_category");
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
+              <a href="blog-single.php" class="block-20" style="background-image: url('images/image_2.jpg');">
               </a>
               <div class="text mt-3">
               	<div class="meta mb-2">
@@ -722,7 +536,7 @@ $query=mysqli_query($conn,"select * from job_category");
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
+              <a href="blog-single.php" class="block-20" style="background-image: url('images/image_3.jpg');">
               </a>
               <div class="text mt-3">
               	<div class="meta mb-2">
@@ -737,7 +551,7 @@ $query=mysqli_query($conn,"select * from job_category");
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_4.jpg');">
+              <a href="blog-single.php" class="block-20" style="background-image: url('images/image_4.jpg');">
               </a>
               <div class="text mt-3">
               	<div class="meta mb-2">
@@ -867,3 +681,12 @@ $query=mysqli_query($conn,"select * from job_category");
     
   </body>
 </html>
+<!-- <script>
+  $(document).ready(function(){
+    $("#id_all_jobs").hide();
+    $("#search").click(function(e){
+      e.preventDefault();
+      $("#id_all_jobs").show();
+    });
+  });
+</script> -->
