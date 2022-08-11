@@ -133,10 +133,10 @@ if(mysqli_num_rows($query)>0){
                 </a>
               </li>
               <li class="nav-item">
-                <!-- <a class="nav-link" href="#">
+                <a class="nav-link" href="apply_jobs.php">
                   <span data-feather="layers"></span>
-                  Integrations
-                </a> -->
+                  Apply Jobs
+                </a>
               </li>
             </ul>
 
