@@ -67,12 +67,17 @@ if(isset($_SESSION['email'])==true){
     <!-- END nav -->
     <?php 
       include('connection/db.php');
-      // $id=$_GET['job_id'];
+      $id=$_GET['id'];
 
-    //  $query=mysqli_query($conn,"select * from all_jobs where job_id='$id'");
-    // while($row=mysqli_fetch_array($query)){
-    //   $title=$row['job_title'];
-    // }
+$query=mysqli_query($conn,"select * from all_jobs where job_id='$id'");
+while ($row=mysqli_fetch_array($query)) {
+  $title=$row['job_title'];
+  $des=$row['des'];
+  $country=$row['country'];
+  $state=$row['state'];
+  $city=$row['city'];
+  $id_job=$row['job_id'];
+}
         ?>
 
     <div class="hero-wrap js-fullheight" style="background-image: url('images/about.jpg');" data-stellar-background-ratio="0.5">
@@ -95,8 +100,10 @@ if(isset($_SESSION['email'])==true){
            
           <h2 class="mb-3">Fill Your Credentials Here</h2>
             
-          <form action="blog-single.php" method="post" enctype="multipart/form-data" style="border: 1px solid gray">
+          <form action="apply_job.php" method="post" id="jobportal" enctype="multipart/form-data" style="border: 1px solid gray">
           <div style="padding: 2%;">
+          <input type="hidden" name="job_seeker" value="<?php echo $_SESSION['email']; ?> " id="job_seeker">
+          <input type="hidden" name="id_job" value="<?php echo $id_job; ?> " id="id_job">
             <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
@@ -131,6 +138,17 @@ if(isset($_SESSION['email'])==true){
             </div>
 
          </div>
+
+         <hr>
+                <div class="row">
+                   <div class="col-sm-6">
+                    <label for="" style="font-weight: bold;color: #1A5276">Enter Your Contact Number</label>
+                    <input type="number" class="form-control" name="mobile_number" id="mobile_number"size="10" maxlength="10" title="Enter 10 digit mobile number" placeholder="Mobile number" required autofocus>
+                  </div>
+                  
+                  
+
+                </div><hr>
            
          <div class="form-group">
           <input type="submit" name="submit" value="Submit" placeholder ="Submit" class="btn btn-primary btn-block ">

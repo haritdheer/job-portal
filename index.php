@@ -1,78 +1,16 @@
-<?php session_start(); ?>
-<?php
-include('connection/db.php');
-$query=mysqli_query($conn,"select * from job_category");
-?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>JobPortal by Harit</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<?php 
+$page='home';
+include('include/header.php');
+
+
+ ?>
     
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/ionicons.min.css">
-
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-    
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-    
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.php">JobPortal</a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
-
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.php" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="about.php" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="blog.php" class="nav-link">Blog</a></li>
-	          <li class="nav-item"><a href="contact.php" class="nav-link">Contact</a></li>
-
-            <?php 
-            if(isset($_SESSION['email'])==true){ ?>
-              <li class="nav-item cta mr-md-2"><a href="job-post.php" class="nav-link"><?php echo $_SESSION['email']; ?></a></li>
-              <li class="nav-item cta cta-colored"><a href="logout.php" class="nav-link">LOGOUT</a></li>
-              <?php
-            }else{?>
-             <li class="nav-item cta mr-md-2"><a href="job-post.php" class="nav-link">LOGIN</a></li>
-             
-              <?php
-            }
-            ?>
-
-	          
-
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
-    <!-- END nav -->
-    
-    <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_3.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
           <div class="col-xl-10 ftco-animate mb-5 pb-5" data-scrollax=" properties: { translateY: '70%' }">
-          	<p class="mb-4 mt-5 pt-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">We have <span class="number" data-number="850000">0</span> great job offers you deserve!</p>
+          	<!-- <p class="mb-4 mt-5 pt-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">We have <span class="number" data-number="850000">0</span> great job offers you deserve!</p> -->
             <h1 class="mb-5" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Your Dream <br><span>Job is Waiting</span></h1>
 
 						<div class="ftco-search">
@@ -90,13 +28,13 @@ $query=mysqli_query($conn,"select * from job_category");
 			            <div class="tab-content p-4" id="v-pills-tabContent">
 
 			              <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
-			              	<form action="index.php" method="POST" class="search-job">
+			              	<form action="index.php"  method="post" class="search-job">
 			              		<div class="row">
 			              			<div class="col-md">
 			              				<div class="form-group">
 				              				<div class="form-field">
 				              					<div class="icon"><span class="icon-briefcase"></span></div>
-								                <input type="text" name="key" id="key" class="form-control" placeholder="eg. Graphic. Web Developer">
+								                <input type="text" name="key" id="key"  class="form-control" placeholder="eg. Garphic. Web Developer">
 								              </div>
 							              </div>
 			              			</div>
@@ -106,18 +44,16 @@ $query=mysqli_query($conn,"select * from job_category");
 				              					<div class="select-wrap">
 						                      <div class="icon"><span class="ion-ios-arrow-down"></span></div>
 						                      <select name="category" id="category" class="form-control">
-                                  <option value="">Category</option>
-                                    <?php
-                                    while($row=mysqli_fetch_array($query)){ ?>
-                                     <option value="<?php echo $row['id'];?>"><?php echo $row['category']; ?></option>
+                                    <option value="">Category</option>
+                                    <?php 
+                                    include('connection/db.php');
+                                    $query=mysqli_query($conn,"select * from job_category");
+                                    while ($row=mysqli_fetch_array($query)) { ?>
+                                       <option value="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>
 
-                                   <?php }  ?>
-
-                                   
-						                      	
-						                      	
+                                     <?php } ?>
+						                   
 						                        
-						                      
 						                      </select>
 						                    </div>
 								              </div>
@@ -134,7 +70,7 @@ $query=mysqli_query($conn,"select * from job_category");
 			              			<div class="col-md">
 			              				<div class="form-group">
 			              					<div class="form-field">
-								                <input type="submit" value="Search" name ="search" id="search" class="form-control btn btn-primary">
+								                <input type="submit" value="Search" name="search" id="search" class="form-control btn btn-primary">
 								              </div>
 							              </div>
 			              			</div>
@@ -196,83 +132,114 @@ $query=mysqli_query($conn,"select * from job_category");
         </div>
       </div>
     </div>
-      <?php 
-      include('connection/db.php');
+<?php 
+include('connection/db.php');
 
-     if(isset($_POST['search'])){
-        $keyword=$_POST['key'];
-        $category=$_POST['category'];
-        $query=mysqli_query($conn,"select * from all_jobs LEFT JOIN company ON all_jobs.customer_email=company.admin WHERE keyword LIKE '%$keyword%' OR category='$category' ");
-     }                                 
+if (isset($_POST['search']) or ($_GET['page'])) {
 
-      ?>
-      <div id="id_all_jobs">
-    <section class="ftco-section bg-light">
-			<div class="container">
-				<div class="row justify-content-center mb-5 pb-3">
+      $page=$_GET['page'];
+
+           if($page==""){
+             $keyword=$_POST['key'];
+             $category=$_POST['category'];
+            $page1=0;
+           }
+           else{
+              $keyword=$_GET['keyword'];
+              $category=$_GET['category'];
+              $page1=($page*3)-3;
+
+
+           }
+           
+
+  
+   $query1="select * from all_jobs LEFT JOIN  company ON all_jobs.customer_email=company.admin WHERE keyword LIKE '%$keyword%' OR category='$category' limit $page1,3";
+ 
+
+$sql=mysqli_query($conn,$query1);
+
+$error=mysqli_num_rows($sql);
+
+
+ ?>
+ <div id="id_all_jobs">
+<section class="ftco-section bg-light">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
-          	<span class="subheading">Recently Added Jobs</span>
+            <span class="subheading">Recently Added Jobs</span>
             <h2 class="mb-4"><span>Recent</span> Jobs</h2>
+            <br>  <br>  
+             <h3> <?php
+             if ($error=="NULL") {
+               echo "Data Not Found !!";
+             }
+
+
+             ?></h3>
           </div>
         </div>
-				<div class="row">
-        <?php
+        <div class="row">
+  <?php 
 
-        while($row=mysqli_fetch_array($query)){ ?>
-
-        
-
-
-					<div class="col-md-12 ftco-animate">
+ while ($row=mysqli_fetch_array($sql)) {  ?>
+          <div class="col-md-12 ftco-animate">
 
             <div class="job-post-item bg-white p-4 d-block d-md-flex align-items-center">
 
               <div class="mb-4 mb-md-0 mr-5">
                 <div class="job-post-item-header d-flex align-items-center">
-                  <h2 class="mr-3 text-black h3"><?php echo $row['job_title']; ?></h2>
+                  <h2 class="mr-3 text-black h3"><?php echo ucfirst($row['job_title']) ; ?></h2>
                   <div class="badge-wrap">
-                   <span class="bg-primary text-white badge py-2 px-3"><?php echo $row['city'];?></span>
+                   <span class="bg-primary text-white badge py-2 px-3"><?php echo $row['city']; ?> </span>
                   </div>
                 </div>
                 <div class="job-post-item-body d-block d-md-flex">
-                  <div class="mr-3"><span class="icon-layers"></span> <a href="#"><?php echo $row['company'];?> </a></div>
-                  <div><span class="icon-my_location"></span> <span><?php echo $row['country']?>,<?php echo $row['state']?>,<?php echo $row['city'];?></span></div>
+                  <div class="mr-3"><span class="icon-layers"></span> <a href="#"><?php echo $row['company']; ?></a></div>
+                  <div><span class="icon-my_location"></span> <span><?php echo $row['country'] ?>,<?php echo $row['state']; ?>,<?php echo $row['city']; ?> </span></div>
                 </div>
               </div>
-              
-        
-              
+
               <div class="ml-auto d-flex">
                 <a href="blog-single.php?id=<?php echo $row['job_id']; ?>" class="btn btn-primary py-2 mr-1">Apply Job</a>
                 <a href="#" class="btn btn-secondary rounded-circle btn-favorite d-flex align-items-center icon">
-                	<span class="icon-heart"></span>
+                  <span class="icon-heart"></span>
                 </a>
               </div>
             </div>
-        </td>
           </div><!-- end -->
-        </tr>
-          <?php } ?>
 
+<?php }  ?>
+
+
+       
         </div>
-				</div>
-				<div class="row mt-5">
+        <div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
               <ul>
                 <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
+                <?php
+                  $sql=mysqli_query($conn,"select * from all_jobs LEFT JOIN  company ON all_jobs.customer_email=company.admin WHERE keyword LIKE '%$keyword%' OR category='$category'");
+       $count=mysqli_num_rows($sql);
+       $a=$count/3;
+        ceil($a);
+        for ($b=1; $b <=$a ; $b++) { 
+          ?>
+
+               
+                <li><a href="index.php?page=<?php echo $b;?>&keyword=<?php echo $keyword; ?>&category=<?php echo $category;?>"><?php echo $b;?></a></li>
+          <?php } ?>      
                 <li><a href="#">&gt;</a></li>
               </ul>
             </div>
           </div>
         </div>
-			</div>
-		</section>
+      </div>
+    </section>
+    </div>
+<?php } ?>
 
     <section class="ftco-section services-section bg-light">
       <div class="container">
@@ -315,7 +282,7 @@ $query=mysqli_query($conn,"select * from job_category");
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <section class="ftco-section ftco-counter">
     	<div class="container">
@@ -360,11 +327,13 @@ $query=mysqli_query($conn,"select * from job_category");
         	</div>
         </div>
     	</div>
-    </section>
+    </section> 
+
+
 
 		
    
-    <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
+   <!--  <section class="ftco-section ftco-counter img" id="section-counter" style="background-image: url(images/bg_1.jpg);" data-stellar-background-ratio="0.5">
     	<div class="container">
     		<div class="row justify-content-center">
     			<div class="col-md-10">
@@ -405,10 +374,10 @@ $query=mysqli_query($conn,"select * from job_category");
 	        </div>
         </div>
     	</div>
-    </section>
+    </section> -->
 
 
-    <section class="ftco-section testimony-section">
+ <!--    <section class="ftco-section testimony-section">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 text-center heading-section ftco-animate">
@@ -493,9 +462,9 @@ $query=mysqli_query($conn,"select * from job_category");
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 
-    <section class="ftco-section bg-light">
+<!--     <section class="ftco-section bg-light">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 heading-section text-center ftco-animate">
@@ -506,7 +475,7 @@ $query=mysqli_query($conn,"select * from job_category");
         <div class="row d-flex">
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.php" class="block-20" style="background-image: url('images/image_1.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_1.jpg');">
               </a>
               <div class="text mt-3">
               	<div class="meta mb-2">
@@ -521,7 +490,7 @@ $query=mysqli_query($conn,"select * from job_category");
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.php" class="block-20" style="background-image: url('images/image_2.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_2.jpg');">
               </a>
               <div class="text mt-3">
               	<div class="meta mb-2">
@@ -536,7 +505,7 @@ $query=mysqli_query($conn,"select * from job_category");
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.php" class="block-20" style="background-image: url('images/image_3.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_3.jpg');">
               </a>
               <div class="text mt-3">
               	<div class="meta mb-2">
@@ -551,7 +520,7 @@ $query=mysqli_query($conn,"select * from job_category");
           </div>
           <div class="col-md-3 d-flex ftco-animate">
             <div class="blog-entry align-self-stretch">
-              <a href="blog-single.php" class="block-20" style="background-image: url('images/image_4.jpg');">
+              <a href="blog-single.html" class="block-20" style="background-image: url('images/image_4.jpg');">
               </a>
               <div class="text mt-3">
               	<div class="meta mb-2">
@@ -566,9 +535,9 @@ $query=mysqli_query($conn,"select * from job_category");
           </div>
         </div>
       </div>
-    </section>
+    </section> -->
 		
-		<section class="ftco-section-parallax">
+	<!-- 	<section class="ftco-section-parallax">
       <div class="parallax-img d-flex align-items-center">
         <div class="container">
           <div class="row d-flex justify-content-center">
@@ -590,8 +559,8 @@ $query=mysqli_query($conn,"select * from job_category");
         </div>
       </div>
     </section>
-
-    <footer class="ftco-footer ftco-bg-dark ftco-section">
+ -->
+  <!--   <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
         <div class="row mb-5">
         	<div class="col-md">
@@ -648,7 +617,9 @@ $query=mysqli_query($conn,"select * from job_category");
           <div class="col-md-12 text-center">
 
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Harit</a>
+
+  <!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> -->
+  
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>
@@ -678,15 +649,17 @@ $query=mysqli_query($conn,"select * from job_category");
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+  <script>document.write(new Date().getFullYear());</script> All rights reserved | This portal is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by Harit</script>
     
   </body>
 </html>
 <!-- <script>
-  $(document).ready(function(){
-    $("#id_all_jobs").hide();
-    $("#search").click(function(e){
-      e.preventDefault();
-      $("#id_all_jobs").show();
-    });
-  });
+$(document).ready(function(){
+$("#id_all_jobs").hide();
+$("#search").click(function(e){
+  e.preventDefault();
+$("#id_all_jobs").show();
+
+});
+});  
 </script> -->
