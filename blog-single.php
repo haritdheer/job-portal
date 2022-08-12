@@ -100,55 +100,82 @@ while ($row=mysqli_fetch_array($query)) {
            
           <h2 class="mb-3">Fill Your Credentials Here</h2>
             
-          <form action="apply_job.php" method="post" id="jobportal" enctype="multipart/form-data" style="border: 1px solid gray">
-          <div style="padding: 2%;">
-          <input type="hidden" name="job_seeker" value="<?php echo $_SESSION['email']; ?> " id="job_seeker">
-          <input type="hidden" name="id_job" value="<?php echo $id_job; ?> " id="id_job">
-            <div class="row">
-            <div class="col-sm-6">
-              <div class="form-group">
-            <label for="">Enter Your First Name</label>
-            <input type="text" class="form-control" name="first_name" placeholder="First Name">
-              </div>
-            </div>
+          <form action="apply_job.php" method="post" id="JobPortal" enctype="multipart/form-data" style="border: 1px solid gray">
+              <div style=" padding: 2%;">
+                <input type="hidden" name="job_seeker" value="<?php echo $_SESSION['email']; ?> " id="job_seeker">
+                <input type="hidden" name="id_job" value="<?php echo $id_job; ?> " id="id_job">
+               <div class="row">
+                  <div class="col-sm-6">
+                    <label for="" style="font-weight: bold;color: #1A5276">Enter Your First Name</label>
+                    <input type="text" class="form-control" name="first_name" id="first_name" placeholder="First Name..." required autofocus>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="" style="font-weight: bold;color: #1A5276">Enter Your Last Name</label>
+                    <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Last Name..." required autofocus>
+                  </div>
+              </div><hr>
 
-            
-            <div class="col-sm-6">
-            <div class="form-group">
-            <label for="">Enter Your Last Name</label>
-            <input type="text" class="form-control" name="last_name" placeholder="Last Name">
-            </div>
-            </div>
-         </div>
-         
-         <div class="row">
-            <div class="col-sm-6">
-            <div class="form-group">
-            <label for="">Enter Your Date of Birth</label>
-            <input type="date" class="form-control" name="dob" placeholder="Date of Birth">
-            </div>
-            </div>
+                <div class="row">
+                   <div class="col-sm-6">
+                    <label for="" style="font-weight: bold;color: #1A5276">Enter DOB</label>
+                    <input type="date" class="form-control" name="dob" id="dob" placeholder="date of birth..." required autofocus>
+                  </div>
+                  <div class="col-sm-6">
+                    <label for="" style="font-weight: bold;color: #1A5276">Choose Resume</label>
+                    <input type="file" name="file" id="file" class="form-control" required autofocus>
+                  </div>
 
-            
-            <div class="col-sm-6">
-            <div class="form-group">
-            <label for="">Choose Resume</label>
-            <input type="file" name="file" class="form-control">
-            </div>
-            </div>
-
-         </div>
-
-         <hr>
+                </div><hr>
                 <div class="row">
                    <div class="col-sm-6">
                     <label for="" style="font-weight: bold;color: #1A5276">Enter Your Contact Number</label>
                     <input type="number" class="form-control" name="mobile_number" id="mobile_number"size="10" maxlength="10" title="Enter 10 digit mobile number" placeholder="Mobile number" required autofocus>
                   </div>
                   
-                  
+                  <div class="col-sm-6">
+                    <label for="" style="font-weight: bold;color: #1A5276">Email</label>
+                    <input type="text" class="form-control "  value="<?php echo $_SESSION['email']; ?> " disabled>
+                  </div>
+
 
                 </div><hr>
+
+                <div class="row">
+                   <div class="col-sm-6">
+                    <label for="" style= "font-weight: bold;color: #1A5276" >Experience(Years)</label>
+                     <input type="text" class="form-control" id="exp" required="required" name="exp" onchange ="exp()" >
+                   </div>
+
+                </div><hr>
+
+                <div class="row">
+                   <div class="col-sm-6">
+                    <label for="" style= "font-weight: bold;color: #1A5276" >Name of College</label>
+                     <input type="text" class="form-control" id="collegename" required="required" name="collegename"  >
+                   </div>
+
+                </div><hr>
+
+                <div class="row">
+                   <div class="col-sm-4">
+                    <label for="" style="font-weight: bold;color: #1A5276">Last Qualification</label>
+                    <input type="text" class="form-control" name="qualification" id="qualification" placeholder="Last Qualification" required autofocus>
+                  </div>
+
+                   <div class="col-sm-4">
+                    <label for="" style="font-weight: bold;color: #1A5276">Pass-Out Year</label>
+                    <input type="number" class="form-control" name="passout" id="passout" placeholder="Pass-Out Year" required autofocus>
+                  </div>
+
+                  
+                  <div class="col-sm-4">
+                    <label for="" style="font-weight: bold;color: #1A5276">Percentage(%)</label>
+                    <input type="number" class="form-control " required="required" name="percentage" placeholder="Last qualification percentage">
+                  </div>
+
+
+                </div><hr>
+
            
          <div class="form-group">
           <input type="submit" name="submit" value="Submit" placeholder ="Submit" class="btn btn-primary btn-block ">
@@ -347,7 +374,7 @@ while ($row=mysqli_fetch_array($query)) {
                 <li><a href="#" class="py-2 d-block">Register</a></li>
                 <li><a href="#" class="py-2 d-block">Post Your Skills</a></li>
                 <li><a href="#" class="py-2 d-block">Job Search</a></li>
-                <li><a href="#" class="py-2 d-block">Emploer Search</a></li>
+                <li><a href="#" class="py-2 d-block">Employer Search</a></li>
               </ul>
             </div>
           </div>
@@ -368,7 +395,7 @@ while ($row=mysqli_fetch_array($query)) {
           <div class="col-md-12 text-center">
 
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This page is made <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Harit</a>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>

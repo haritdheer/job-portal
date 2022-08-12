@@ -34,7 +34,7 @@ include('include/header.php');
 			              				<div class="form-group">
 				              				<div class="form-field">
 				              					<div class="icon"><span class="icon-briefcase"></span></div>
-								                <input type="text" name="key" id="key"  class="form-control" placeholder="eg. Garphic. Web Developer">
+								                <input type="text" name="key" id="key"  class="form-control" placeholder="eg. Graphic, Web Developer">
 								              </div>
 							              </div>
 			              			</div>
@@ -139,7 +139,7 @@ if (isset($_POST['search']) or ($_GET['page'])) {
 
       $page=$_GET['page'];
 
-           if($page==""){
+           if($page==""||$page==1){
              $keyword=$_POST['key'];
              $category=$_POST['category'];
             $page1=0;
@@ -154,7 +154,7 @@ if (isset($_POST['search']) or ($_GET['page'])) {
            
 
   
-   $query1="select * from all_jobs LEFT JOIN  company ON all_jobs.customer_email=company.admin WHERE keyword LIKE '%$keyword%' OR category='$category' limit $page1,3";
+   $query1="select * from all_jobs LEFT JOIN  company ON all_jobs.customer_email=company.admin WHERE keyword LIKE '%$keyword%' OR category='$category' limit $page1,5";
  
 
 $sql=mysqli_query($conn,$query1);
@@ -223,7 +223,7 @@ $error=mysqli_num_rows($sql);
                 <?php
                   $sql=mysqli_query($conn,"select * from all_jobs LEFT JOIN  company ON all_jobs.customer_email=company.admin WHERE keyword LIKE '%$keyword%' OR category='$category'");
        $count=mysqli_num_rows($sql);
-       $a=$count/3;
+       $a=$count/5;
         ceil($a);
         for ($b=1; $b <=$a ; $b++) { 
           ?>

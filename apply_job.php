@@ -151,7 +151,7 @@ body {
       </header> -->
 
       <main role="main" class="inner cover">
-        <h1 class="cover-heading">Cover your page.</h1>
+        <h1 class="cover-heading"></h1>
 
         <?php
 include('connection/db.php');
@@ -164,16 +164,28 @@ if(isset($_POST['submit'])){
    $tmp_name=$_FILES['file']['tmp_name'];
    $id_job=$_POST['id_job'];
    $job_seeker=$_POST['job_seeker'];
-   $mobile=$_POST['mobile_number'];
+   $mobile_number=$_POST['mobile_number'];
+   $exp=$_POST['exp'];
+   $collegename=$_POST['collegename'];
+   $qualification=$_POST['qualification'];
+   $percentage=$_POST['percentage'];
+   $passout=$_POST['passout'];
+
+   $q="select * from job_apply where job_seeker='$job_seeker' and id_job='$id_job' ";
+   $sql=mysqli_query($conn,$q);
+   if(mysqli_num_rows($sql)>0){
+    echo "<h1>Already Applied!!!</h1>";
+   }else{
 
    move_uploaded_file($_FILES['file']['tmp_name'], 'files/' .$file);
-   $query=mysqli_query($conn,"insert into job_apply(first_name,last_name,dob,file,id_job,job_seeker,mobile_number)values('$first_name','$last_name','$dob','$file','$id_job','$job_seeker','$mobile')");
+   $query=mysqli_query($conn,"insert into job_apply(first_name,last_name,dob,file,id_job,job_seeker,mobile_number,exp,collegename,qualification,percentage,passout)values('$first_name','$last_name','$dob','$file','$id_job','$job_seeker','$mobile_number','$exp','$collegename','$qualification','$percentage','$passout')");
    if($query){ ?>
       <p class="lead">Your Respond has been Submitted</p>
       <?php
    }else{
     echo "Not";
    }
+}
 }
 
 ?>
