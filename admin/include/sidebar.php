@@ -135,7 +135,7 @@ if(mysqli_num_rows($query)>0){
               <li class="nav-item">
                 <a class="nav-link" href="apply_jobs.php">
                   <span data-feather="layers"></span>
-                  Apply Jobs
+                  Applied Jobs
                 </a>
               </li>
             </ul>

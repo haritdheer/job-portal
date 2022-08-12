@@ -9,7 +9,7 @@
             <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="admin_dashboard.php">Dashboard</a></li>
-              <li class="breadcrumb-item"><a href="#">Apply Jobs</a></li>
+              <li class="breadcrumb-item"><a href="#">Applied Jobs</a></li>
             
             </ol>
           </nav>
@@ -34,6 +34,7 @@
                
                 <th>Job Seeker Name</th>
                 <th>Job Seeker Email</th>
+                <th>Mobile Number</th>
                 
 
                 <th>Action</th>
@@ -60,6 +61,8 @@ ON job_apply.id_job = all_jobs.job_id  where customer_email='{$_SESSION['email']
                 <td><?php echo $row['first_name']; ?> <?php echo $row['last_name']; ?></td>
                 
                 <td><?php echo $row['job_seeker']; ?></td>
+
+                <td><?php echo $row['mobile_number']; ?></td>
                 
                 <!-- <td><a href="http://localhost/job_portal/files/<?php echo $row['file']; ?>">Download File </a></td> -->
                 
@@ -84,6 +87,7 @@ ON job_apply.id_job = all_jobs.job_id  where customer_email='{$_SESSION['email']
               
                 <th>Job Seeker Name</th>
                 <th>Job Seeker Email</th>
+                <th>Mobile Number</th>
                 
                 <th>Action</th>
             </tr>
