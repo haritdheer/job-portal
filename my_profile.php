@@ -3,6 +3,7 @@
 
 include('connection/db.php');
 include('include/header.php');
+
 include('include/my_profile.php');
 $query=mysqli_query($conn,"select * from profiles where user_email='{$_SESSION['email']}'");
 while ($row=mysqli_fetch_array($query)) {
@@ -20,7 +21,7 @@ while ($row=mysqli_fetch_array($query)) {
    	 	
       <div class="row">
       	  <div class="col-md-6">
-      	  	<img src="profile_img/<?php if(!empty($img)){ echo $img;}else{ echo 'logo.png' ;} ?>" class="img-thumbnail" alt="profile_img/logo.png">
+      	  	<img src="profile_img/<?php if(!empty($img)){ echo $img;}else{ echo 'logo.png' ;} ?>" class="img-thumbnail" alt="">
       	  </div>
 
           <div class="col-md-4">
@@ -121,7 +122,7 @@ if($count>0){
 
      <?php 
 
-// include('include/footer.php');
+include('include/footer.php');
 
     ?>
 <!--    <script>
