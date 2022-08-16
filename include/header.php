@@ -11,7 +11,7 @@ error_reporting(0);
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>JobPortal - Free Bootstrap 4 Template by Colorlib</title>
+    <title>JobPortal</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -47,7 +47,7 @@ error_reporting(0);
   </head>
   <body>
     
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light " id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.php">JobPortal</a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,11 +57,11 @@ error_reporting(0);
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item <?php if($page=='home'){echo 'active';} ?>"><a href="index.php" class="nav-link">Home</a></li>
-	          <!-- <li class="nav-item <?php if($page=='about'){echo 'active';} ?>"><a href="about.php" class="nav-link">About</a></li> -->
+	          <li class="nav-item <?php if($page=='about'){echo 'active';} ?>"><a href="about.php" class="nav-link">About</a></li>
 
-	          <!-- <li class="nav-item <?php if($page=='blog'){echo 'active';} ?>"><a href="blog.php" class="nav-link">Blog</a></li> -->
+	          <li class="nav-item <?php if($page=='blog'){echo 'active';} ?>"><a href="blog.php" class="nav-link">Blog</a></li>
 	          
-            <!-- <li class="nav-item <?php if($page=='contact'){echo 'active';} ?>"><a href="contact.php" class="nav-link">Contact</a></li> -->
+            <li class="nav-item <?php if($page=='contact'){echo 'active';} ?>"><a href="contact.php" class="nav-link">Contact</a></li>
 	            <?php 
              if ( isset( $_SESSION['email'])==true) { ?>
               <li class="nav-item cta mr-md-2"><a href="job-post.php" class="nav-link"><?php if (empty($name)) {
@@ -73,8 +73,8 @@ error_reporting(0);
             <div class="dropdown">
                <img src="profile_img/<?php if(empty($img)){echo "logo.png";}else{ echo $img;} ?>" class="img-circle dropdown-toggle" type="button" data-toggle="dropdown" alt="Cinque Terre" width="50" height="50">
                <ul class="dropdown-menu">
-                <li><a href="my_profile.php">My Profile</a></li>
-                 <li ><a href="logout.php" >logout</a></li>
+                <li><a href="my_profile.php" >My Profile</a></li>
+                 <li ><a href="logout.php" >Logout</a></li>
               </ul>
             </div>
          </li>
