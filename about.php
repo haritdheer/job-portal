@@ -1,9 +1,11 @@
-<?php
-include('include/header.php')
-?>
+<?php 
+$page='about';
+include('include/header.php');
+include('include/h-header.php');
+ ?>
 
     <section class="ftco-about d-md-flex">
-    	<div class="one-half img" style="background-image: url(images/bg_2.jpg);"></div>
+    	<div class="one-half img" style="background-image: url(images/about.jpg);"></div>
     	<div class="one-half ftco-animate">
         <div class="heading-section ftco-animate ">
           <h2 class="mb-4"><span>We Are The Job Portal Agency</span></h2>
@@ -167,6 +169,7 @@ include('include/header.php')
       </div>
     </section>
 
-   <?php
-   include('include/footer.php');
-   ?>
+   <?php 
+
+include('include/footer.php');
+    ?>

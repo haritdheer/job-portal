@@ -1,6 +1,8 @@
-<?php
-include('include/header.php')
-?>
+<?php 
+$page='blog';
+include('include/header.php');
+include('include/blogHeader.php');
+ ?>
 
     <section class="ftco-section bg-light">
       <div class="container">
@@ -167,6 +169,7 @@ include('include/header.php')
       </div>
     </section>
 
-    <?php
-   include('include/footer.php');
-   ?>
+     <?php 
+
+include('include/footer.php');
+    ?>

@@ -20,7 +20,7 @@ while ($row=mysqli_fetch_array($query)) {
    	 	
       <div class="row">
       	  <div class="col-md-6">
-      	  	<img src="profile_img/<?php if(!empty($img)){ echo $img;}else{ echo 'logo.png' ;} ?>" class="img-thumbnail" alt="Cinque Terre">
+      	  	<img src="profile_img/<?php if(!empty($img)){ echo $img;}else{ echo 'logo.png' ;} ?>" class="img-thumbnail" alt="profile_img/logo.png">
       	  </div>
 
           <div class="col-md-4">
@@ -53,11 +53,11 @@ while ($row=mysqli_fetch_array($query)) {
  <div class="row">
 
  	 <div class="col-md-6">
- 	 	 <td> Enter Your MObile Number : </td>
+ 	 	 <td> Enter Your Mobile Number : </td>
  	 </div>
 
  	  <div class="col-md-6">
- 	 	 <td><input type="Number" name="number" id="number" value="<?php if(!empty($number)) echo $number; ?>" placeholder="Enter Your MObile Number ..." class="form-group" > </td>
+ 	 	 <td><input type="Number" name="number" id="number" value="<?php if(!empty($number)) echo $number; ?>" placeholder="Enter Your Mobile Number ..." class="form-group" > </td>
  	 </div>
  	 
  </div>

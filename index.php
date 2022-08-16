@@ -139,7 +139,7 @@ if (isset($_POST['search']) or ($_GET['page'])) {
 
       $page=$_GET['page'];
 
-           if($page==""||$page==1){
+           if($page==""){
              $keyword=$_POST['key'];
              $category=$_POST['category'];
             $page1=0;
@@ -172,8 +172,8 @@ $error=mysqli_num_rows($sql);
             <h2 class="mb-4"><span>Recent</span> Jobs</h2>
             <br>  <br>  
              <h3> <?php
-             if ($error=="NULL") {
-               echo "Data Not Found !!";
+             if ($error==NULL) {
+               echo "No Jobs in this category posted yet!!";
              }
 
 
@@ -282,7 +282,7 @@ $error=mysqli_num_rows($sql);
           </div>
         </div>
       </div>
-    </section> -->
+    </section> 
 
     <section class="ftco-section ftco-counter">
     	<div class="container">
